@@ -1,0 +1,18 @@
+{% include '_list.html.twig' with {'URL': URL } %}
+<div class="col-12 col-lg-8 col-xl-9">
+	<h5 class="header-text">Расчёт статистики "критически нагруженных" заданий</h5>
+	<div class="table-container rounded">
+		{% if taskStatistik|length > 0 %}
+           
+			<ul class="list-group list-group-flush margin-top-15">
+				{% for item in taskStatistik %}
+					<li class="list-group-item">
+						Задание: {{ item.task}} Количество студентов: {{ item.studentsCount }} Количество проверяющих: {{ item.instructorsCount }} Коэффициент: {{ item.coefficient }}
+					</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	</div>
+</div>
+</main>
+<script src="{{ URL }}/public/js/base.js"></script>

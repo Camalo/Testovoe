@@ -1,0 +1,46 @@
+{% include '_list.html.twig' with {'URL': URL } %}
+<div class="col-12 col-lg-8 col-xl-10">
+	<h5 class="header-text">Выборка для проверяющего количества студентов для 1го задания с учётом привязки 
+				групп со студентами;</h5>
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-4">
+			<div class="form-container rounded">
+				<form id="select_task_id" method="post">
+					<div class="mb-3">
+						<select class="form-select" name="task">
+							{% for task in tasks %}
+								{% if task.id == currentTask %}
+									<option value="{{ task.id }}">{{task.task}}</option>
+								{% else %}
+									<option value="{{ task.id }}">{{task.task}}</option>
+								{% endif %}
+							{% endfor %}
+						</select>
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
+		<div class="col-12 col-lg-5 col-xl-7">
+			<div class="table-container rounded">
+
+				<div>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col">Задание</th>
+								<th scope="col">Количество студентов</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>{{studentsCount.task_id}}</td>
+								<td>{{studentsCount.count}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div></main><script src="{{ URL }}/public/js/studentsCount.js"></script>
