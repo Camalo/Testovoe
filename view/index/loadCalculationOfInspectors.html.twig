@@ -1,12 +1,13 @@
+{% include '_header.twig' with {'URL': URL } %}
 {% include '_list.html.twig' with {'URL': URL } %}
 <div class="col-12 col-lg-8 col-xl-9">
 	<h5 class="header-text">Расчёт нагрузки проверяющих: какое количество заданий необходимо проверить</h5>
 	<div class="table-container rounded">
-		{% if loads|length > 0 %}
+		{% if instructors|length > 0 %}
 			<ul class="list-group list-group-flush margin-top-15">
-				{% for load in loads %}
+				{% for instructor in instructors %}
 					<li class="list-group-item">
-						Проверяющий: {{ load.first_name }} {{ load.last_name }} Количество заданий: {{ load.tasksCount }}
+						Проверяющий: {{ instructor.firstName }} {{ instructor.lastName }} Количество заданий: {{ instructor.tasksCount }}
 					</li>
 				{% endfor %}
 			</ul>
@@ -14,4 +15,5 @@
 	</div>
 </div>
 </main>
-<script src="{{ URL }}/public/js/base.js"></script>
+</body>
+{% include '_footer.twig' with {'URL': URL } %}

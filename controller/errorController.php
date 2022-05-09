@@ -1,11 +1,15 @@
 <?php
+namespace controllers;
+use src\Controller;
+use view\View;
 
-class ErrorController extends BaseController
+class ErrorController implements Controller
 {
-
+    private $view;
+    
     function __construct()
     {
-        parent::__construct();
+        $this->view = new View();
     }
 
     public function Index(){

@@ -1,3 +1,4 @@
+{% include '_header.twig' with {'URL': URL } %}
 {% include '_list.html.twig' with {'URL': URL } %}
 <div class="col-12 col-lg-8 col-xl-10">
 	<h5 class="header-text">Вывод списка студентов для конкретного занятия</h5>
@@ -49,5 +50,6 @@
 		</div>
 
 	</main>
-
+</body>
 	<script src="{{ URL }}/public/js/listOfStudents.js"></script>
+{% include '_footer.twig' with {'URL': URL } %}

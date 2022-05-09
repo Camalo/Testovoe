@@ -1,22 +1,25 @@
 <?php
+namespace view;
+use \Twig\Loader\FilesystemLoader;
+use \Twig\Environment;
 
 class View
 {
+    private FilesystemLoader $loader;
+    private Environment $twig;
+
     function __construct()
     {
-        // echo "Using a view<br> </br>";
+        $this->loader = new FilesystemLoader("./view/");
+        $this->twig = new Environment($this->loader);
     }
     public function render(string $folder, string $name,array $args)
     {
-      //  $name =  $name . '/index.html.twig';
-        require "view/header.php";
-        $loader = new \Twig\Loader\FilesystemLoader("./view/". $folder . "/");
-        $twig = new \Twig\Environment($loader);
-        
-        $template = $twig->load($name .'.html.twig');
+      
+        $template = $this->twig->load($folder."/".$name .'.html.twig');
         $args['URL'] = URL;
        
         echo $template->render($args);
-        require "view/footer.php";
+       
     }
 }

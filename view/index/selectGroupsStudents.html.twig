@@ -1,3 +1,4 @@
+{% include '_header.twig' with {'URL': URL } %}
 {% include '_list.html.twig' with {'URL': URL } %}
 <div class="col-12 col-lg-8 col-xl-10">
 	<h5 class="header-text">Выборка для задания списка групп и студентов</h5>
@@ -31,11 +32,13 @@
 							<thead>
 								<tr>
 									<th scope="col">Задание</th>
-									<th scope="col">Студенты/группы</th>
+									<th scope="col">Студенты</th>
+									<th scope="col">Группы</th>
 								</tr>
 							</thead>
 							<tbody>
 								{% for student in students %}
+								{% for group in student.groups %}
 									<tr>
 										<td>
 											{{ currentTask}}
@@ -44,17 +47,12 @@
 											{{ student.first_name }}
 											{{ student.last_name }}
 										</td>
-									</tr>
-								{% endfor %}
-								{% for group in groups %}
-									<tr>
-										<td>
-											{{ currentTask}}
-										</td>
 										<td>
 											{{ group.id }}
+										
 										</td>
 									</tr>
+								{% endfor %}
 								{% endfor %}
 							</tbody>
 						</table>
@@ -66,3 +64,4 @@
 		</div>
 	</main>
 	<script src="{{ URL }}/public/js/listOfGroupsStudents.js"></script>
+{% include '_footer.twig' with {'URL': URL } %}
