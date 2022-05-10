@@ -10,7 +10,7 @@ class View
 
     function __construct()
     {
-        $this->loader = new FilesystemLoader("./view/");
+        $this->loader = new FilesystemLoader("../view/");
         $this->twig = new Environment($this->loader);
     }
     public function render(string $folder, string $name,array $args)

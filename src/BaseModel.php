@@ -1,5 +1,8 @@
 <?php
 
+namespace lib;
+
+
 class BaseModel{
 
     function __construct(){

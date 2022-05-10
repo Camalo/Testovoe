@@ -19,6 +19,7 @@ class Instructor
 
     /**
      * Get the value of id
+     * @return int
      */ 
     public function getId()
     {
@@ -27,6 +28,7 @@ class Instructor
 
     /**
      * Get the value of firstName
+     * @return string
      */ 
     public function getFirstName()
     {
@@ -35,6 +37,7 @@ class Instructor
 
     /**
      * Get the value of lastName
+     *  @return string
      */ 
     public function getLastName()
     {
@@ -43,6 +46,7 @@ class Instructor
 
     /**
      * Get the value of tasks
+     *  @return array
      */ 
     public function getTasks()
     {
@@ -63,6 +67,7 @@ class Instructor
 
     /**
      * Get the value of tasksCount
+     *  @return int
      */ 
     public function getTasksCount()
     {

@@ -17,7 +17,8 @@ class Lesson
 
     /**
      * Get the value of id
-     */ 
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -25,7 +26,8 @@ class Lesson
 
     /**
      * Get the value of title
-     */ 
+     * @return string
+     */
     public function getTitle()
     {
         return $this->title;
@@ -33,7 +35,8 @@ class Lesson
 
     /**
      * Get the value of description
-     */ 
+     * @return string
+     */
     public function getDescription()
     {
         return $this->description;

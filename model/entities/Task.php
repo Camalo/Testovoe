@@ -2,7 +2,7 @@
 
 namespace models\entities;
 
-class Task
+class Task implements \JsonSerializable
 {
 
     private int $id;
@@ -23,7 +23,19 @@ class Task
     }
 
     /**
+     * Серилизует свойства объекта в JSON
+     * @return mixed
+     */
+    public function jsonSerialize()
+    {
+        $vars = get_object_vars($this);
+
+        return $vars;
+    }
+
+    /**
      * Get the value of id
+     * @return int
      */
     public function getId()
     {
@@ -32,6 +44,7 @@ class Task
 
     /**
      * Get the value of task
+     * @return string
      */
     public function getTask()
     {
@@ -40,6 +53,7 @@ class Task
 
     /**
      * Get the value of status
+     * @return string
      */
     public function getStatus()
     {
@@ -48,6 +62,7 @@ class Task
 
     /**
      * Get the value of studentId
+     * @return ?int
      */
     public function getStudentId()
     {
@@ -56,6 +71,7 @@ class Task
 
     /**
      * Get the value of lessonId
+     * @return ?int
      */
     public function getLessonId()
     {
@@ -64,6 +80,7 @@ class Task
 
     /**
      * Get the value of groupId
+     * @return ?string
      */
     public function getGroupId()
     {

@@ -6,7 +6,7 @@ $('#select_lesson_id').submit(function (e) {
   
     $.ajax({
         type: "POST",
-        url: 'https://localhost/testovoe/index/updateListOfStudents',
+        url: 'https://localhost/testovoe/index/updateLessonStudents',
         data: $(this).serializeArray(),
         success: function (response) {
             let jsonData = JSON.parse(response);
@@ -27,7 +27,7 @@ function renderTableContent(data) {
     data.forEach(student => {
        
             content += '<tr>';
-        content += '<td>' + student.first_name + '</td><td>' + student.last_name + '</td>';
+        content += '<td>' + student.firstName + '</td><td>' + student.lastName + '</td>';
     });
     content += '</tbody></table></div>';
     $(".table-container ").append(content);

@@ -18,7 +18,7 @@ class IndexController implements Controller
     private $view;
     function __construct()
     {
-       $this->view = new View();
+        $this->view = new View();
     }
 
     /**
@@ -36,7 +36,7 @@ class IndexController implements Controller
 
         $studentTasks = $this->model->getStudentTasks(1);
 
-        $this->view->render('index', 'index',[
+        $this->view->render('index', 'index', [
             'tasksOfStudent' => $studentTasks,
             'students' => $students
         ]);
@@ -45,7 +45,7 @@ class IndexController implements Controller
      * Нахождение количества студентов выполняющих определенное задание
      * 
      */
-    public function StudentsCount()
+    public function getStudentsCount()
     {
         $this->service = new StudentsManagerService();
 
@@ -54,9 +54,9 @@ class IndexController implements Controller
 
         $this->model = new InstructorModel($students);
         $studentCount = $this->model->getStudentsCount(1, $tasks);
-    
+
         $this->view->render('index', 'studentsCount', [
-            'studentsCount' =>$studentCount,
+            'studentsCount' => $studentCount,
             'tasks' => $tasks
         ]);
     }
@@ -65,30 +65,30 @@ class IndexController implements Controller
      * 
      * @return Student[] объект 
      */
-    public function ListOfGroupsStudents()
+    public function getListOfGroupsStudents()
     {
-        //Выборка для задания списка групп и студентов;
+        
         $this->service = new StudentsManagerService();
 
         $tasks = $this->service->getTasks();
         $students = $this->service->getStudents();
-        //$groups=$this->service->getGroups();
+
 
         $this->model = new InstructorModel($students);
         $taskStudents = $this->model->getTaskStudents(1, $tasks);
-        //var_dump($taskStudents);
+
         $this->view->render('index', 'selectGroupsStudents', [
             'students' => $taskStudents,
             'tasks' => $tasks
         ]);
     }
 
-     /**
+    /**
      * Расчёт нагрузки проверяющих
      * Нахождение информации о проверяющих и количестве заданий которые необходимо проверить
      * 
      */
-    public function LoadCalculationOfInspectors()
+    public function getTaskLoadsStatistic()
     {
         $this->service = new StatisticManagerService();
         $instructors = $this->service->getInstructors();
@@ -108,15 +108,15 @@ class IndexController implements Controller
      * количестве проверяющих задание 
      * 
      */
-    public function TaskStatistikCalculation()
+    public function getCriticalLoadedStatistic()
     {
         $this->service = new StudentsManagerService();
 
         $tasks = $this->service->getTasks();
         $students = $this->service->getStudents();
         $this->model = new InstructorModel($students);
-        $studentCounts =array();
-        foreach($tasks as $task){
+        $studentCounts = array();
+        foreach ($tasks as $task) {
 
             $studentCounts[$task->getId()] = $this->model->getStudentsCount($task->getId(), $tasks);
         }
@@ -124,15 +124,19 @@ class IndexController implements Controller
         $this->service = new StatisticManagerService();
         $instructors = $this->service->getInstructors();
         $this->model = new StatisticModel($instructors);
-        $loads = $this->model->getCriticalLoadedStatistic($tasks,$studentCounts);
-        
-        // var_dump($loads);
+        $loads = $this->model->getCriticalLoadedStatistic($tasks, $studentCounts);
+
 
         $this->view->render('index', 'taskStatistikCalculation', [
             'loads' => $loads
         ]);
     }
-    public function ListOfStudents()
+
+    /**
+     * Нахождение студентов для определенного занятия
+     * 
+     */
+    public function getLessonStudents()
     {
         //Вывод списка студентов для конкретного занятия
         $this->service = new StudentsManagerService();
@@ -143,7 +147,6 @@ class IndexController implements Controller
 
         $lessonStudents = $this->model->getLessonStudents(3);
 
-        // var_dump($lessonStudents);
 
         $this->view->render('index', 'listOfStudents', [
             'students' => $lessonStudents,
@@ -152,27 +155,98 @@ class IndexController implements Controller
     }
 
 
-    //ОБНОВЛЕНИЕ
+    /**
+     * Нахождение всех заданий относящихся к определенному студенту
+     * в ответ на Ajax запрос
+     */
     public function updateTaskOfStudent()
     {
-        $this->model->updateTaskOfStudent();
+
+        if (isset($_POST['student'])) {
+
+            $studentId = $_POST['student'];
+            $this->service = new StudentsManagerService();
+
+            $tasks = $this->service->getTasks();
+            $students = $this->service->getStudents();
+
+            $this->model = new StudentModel($tasks, $students);
+
+            $studentTasks = $this->model->getStudentTasks($studentId);
+
+            echo json_encode(['status' => 'success', 'data' => $studentTasks]);
+        } else
+            echo json_encode(['status' => 'error']);
     }
 
+    /**
+     * Нахождение количества студентов выполняющих определенное задание
+     * в ответ на Ajax запрос
+     * 
+     */
     public function updateStudentsCount()
     {
-        $this->model->updateStudentsCount();
-    }
-    public function updateStudentsOfTask()
-    {
-        $this->model->updateStudentsOfTask();
+        if (isset($_POST['task'])) {
+            $taskId = $_POST['task'];
+
+            $this->service = new StudentsManagerService();
+
+            $tasks = $this->service->getTasks();
+            $students = $this->service->getStudents();
+
+            $this->model = new InstructorModel($students);
+            $studentCount = $this->model->getStudentsCount($taskId, $tasks);
+            echo json_encode(['status' => 'success',  'data' => $studentCount]);
+        } else
+            echo json_encode(['status' => 'error']);
     }
 
-    public function updateListOfStudents()
+    /**
+     * Нахождение студентов для определенного занятия
+     * в ответ на Ajax запрос
+     */
+    public function updateLessonStudents()
     {
-        $this->model->updateStudentsOfClass();
+        if (isset($_POST['lesson'])) {
+            $lessonId = $_POST['lesson'];
+            $this->service = new StudentsManagerService();
+
+            $students = $this->service->getStudents();
+            $this->model = new InstructorModel($students);
+
+            $lessonStudents = $this->model->getLessonStudents($lessonId);
+            echo json_encode(['status' => 'success', 'data' => $lessonStudents]);
+        } else
+            echo json_encode(['status' => 'error']);
     }
+
+    /**
+     * Нахождение студентов и групп выполняющих определенное задание
+     * в ответ на Ajax запрос
+     */
     public function updateListOfGroupsStudents()
     {
-        $this->model->updateListOfGroupsStudents();
+        if (isset($_POST['task'])) {
+            $taskId = $_POST['task'];
+            $this->service = new StudentsManagerService();
+
+            $tasks = $this->service->getTasks();
+            $students = $this->service->getStudents();
+    
+    
+            $this->model = new InstructorModel($students);
+            $taskStudents = $this->model->getTaskStudents($taskId, $tasks);
+            echo json_encode(['status' => 'success', 'taskStudents' => $taskStudents, 'task' => $taskId]);
+        } else
+            echo json_encode(['status' => 'error']);
+
+        $this->service = new StudentsManagerService();
+
+        $tasks = $this->service->getTasks();
+        $students = $this->service->getStudents();
+
+
+        $this->model = new InstructorModel($students);
+        $taskStudents = $this->model->getTaskStudents(1, $tasks);
     }
 }

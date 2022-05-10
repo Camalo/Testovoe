@@ -4,8 +4,8 @@ namespace models\entities;
 class Load{
     
     private int $taskId;
-    private string $studentsCount;
-    private string $instructorsCount;
+    private int $studentsCount;
+    private int $instructorsCount;
     private $coefficient;
     
     function __construct(int $taskId, int $studentsCount,int $instructorsCount)
@@ -19,6 +19,7 @@ class Load{
 
     /**
      * Get the value of taskId
+     * @return int
      */ 
     public function getTaskId()
     {
@@ -27,6 +28,7 @@ class Load{
 
     /**
      * Get the value of studentsCount
+     * @return int
      */ 
     public function getStudentsCount()
     {
@@ -35,6 +37,7 @@ class Load{
 
     /**
      * Get the value of instructorsCount
+     * @return int
      */ 
     public function getInstructorsCount()
     {

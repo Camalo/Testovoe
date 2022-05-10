@@ -1,7 +1,8 @@
 <?php
 namespace models\entities;
 
-class Student{
+class Student implements \JsonSerializable
+{
     
     private int $id;
     private string $firstName;
@@ -15,9 +16,19 @@ class Student{
         $this->firstName = $firstName;
         $this->lastName = $lastName;
     }
+    /**
+     * Серилизует свойства объекта в JSON
+     * @return mixed
+     */
+    public function jsonSerialize()
+    {
+        $vars = get_object_vars($this);
 
+        return $vars;
+    }
     /**
      * Get the value of id
+     * @return int
      */ 
     public function getId()
     {
@@ -26,6 +37,7 @@ class Student{
 
     /**
      * Get the value of first_name
+     * @return string
      */ 
     public function getFirst_name()
     {
@@ -34,6 +46,7 @@ class Student{
 
     /**
      * Get the value of last_name
+     * @return string
      */ 
     public function getLast_name()
     {
@@ -42,6 +55,7 @@ class Student{
 
     /**
      * Get the value of groups
+     * @return array
      */ 
     public function getGroups()
     {

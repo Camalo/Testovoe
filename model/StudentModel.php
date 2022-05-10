@@ -5,14 +5,11 @@ use model\entities;
 
 class StudentModel 
 {
-    // Выборка всех заданий студента
+    
 
     private array $students;
-    private array $groups;
     private array $tasks;
     private array $studentTasks;
-    private array $lessons;
-   // private int $studentId;
 
     public function __construct(array $tasks,array $students){
         $this->tasks = $tasks;

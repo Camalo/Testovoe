@@ -6,9 +6,10 @@ $('#select_student_id').submit(function (e) {
 
     $.ajax({
         type: "POST",
-        url: 'https://localhost/testovoe/index/updateTaskOfStudent',
+        url: 'https://localhost/testovoe/Index/updateTaskOfStudent',
         data: $(this).serializeArray(),
         success: function (response) {
+          
             let jsonData = JSON.parse(response);
             if (jsonData.status == 'success') {
                 renderTableContent(jsonData.data);
@@ -21,9 +22,11 @@ $('#select_student_id').submit(function (e) {
 });
 
 function renderTableContent(data) {
+   
     $(".table-container ").empty();
     let content = '<div><table class="table table-striped"><thead><tr><th scope="col">Задание</th><th scope="col">Проверено/непроверено</th></tr></thead><tbody>';
     data.forEach(task => {
+        
         if (task.status == 'unchecked')
             content += '<tr class="table-danger">';
         else

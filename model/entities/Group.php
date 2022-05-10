@@ -1,7 +1,8 @@
 <?php
 namespace models\entities;
 
-class Group{
+class Group implements \JsonSerializable
+{
     
     private string $id;
     private array $lessons;
@@ -9,7 +10,16 @@ class Group{
     {
         $this->id = $id;
     }
-    
+    /**
+     * Серилизует свойства объекта в JSON
+     * @return mixed
+     */
+    public function jsonSerialize()
+    {
+        $vars = get_object_vars($this);
+
+        return $vars;
+    }
     /**
      * Возвращает номер группы id
      */ 

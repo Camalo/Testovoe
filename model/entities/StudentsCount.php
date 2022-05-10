@@ -1,7 +1,8 @@
 <?php
 namespace models\entities;
 
-class StudentsCount{
+class StudentsCount implements \JsonSerializable
+{
     
     private int $taskId;
     private int $count;
@@ -13,7 +14,18 @@ class StudentsCount{
     }
 
     /**
+     * Серилизует свойства объекта в JSON
+     * @return mixed
+     */
+    public function jsonSerialize()
+    {
+        $vars = get_object_vars($this);
+
+        return $vars;
+    }
+    /**
      * Get the value of taskId
+     * @return int
      */ 
     public function getTaskId()
     {
@@ -22,6 +34,7 @@ class StudentsCount{
 
     /**
      * Get the value of count
+     * @return int
      */ 
     public function getCount()
     {
