@@ -1,8 +1,10 @@
 <?php
 
 use \src\App;
-
+define('URL','https://localhost/testovoe');
 require_once '../vendor/autoload.php';
 
-$app = new App();
 
+ErrorHandler::register();
+
+$app = new App();

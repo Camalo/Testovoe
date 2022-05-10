@@ -26,7 +26,7 @@ class Task implements \JsonSerializable
      * Серилизует свойства объекта в JSON
      * @return mixed
      */
-    public function jsonSerialize()
+    public function jsonSerialize():mixed
     {
         $vars = get_object_vars($this);
 

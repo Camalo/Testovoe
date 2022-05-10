@@ -24,6 +24,7 @@ class StudentsManagerService extends DataBase
     }
     public function getTasks()
     {
+      
         $stmt = $this->db->query("SELECT `id`, `task`, `status`, `group_id`, `student_id`, `lesson_id` FROM `tasks`");
         $stmt->execute();
         $dbRows = $stmt->fetchAll();

@@ -14,7 +14,7 @@ class Group implements \JsonSerializable
      * Серилизует свойства объекта в JSON
      * @return mixed
      */
-    public function jsonSerialize()
+    public function jsonSerialize():mixed
     {
         $vars = get_object_vars($this);
 
@@ -22,6 +22,7 @@ class Group implements \JsonSerializable
     }
     /**
      * Возвращает номер группы id
+     * @return string
      */ 
     public function getId()
     {
@@ -30,6 +31,7 @@ class Group implements \JsonSerializable
 
     /**
      * Get the value of lessons
+     * @return array
      */ 
     public function getLessons()
     {

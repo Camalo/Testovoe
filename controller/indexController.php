@@ -28,10 +28,10 @@ class IndexController implements Controller
     {
 
         $this->service = new StudentsManagerService();
-
+//
         $tasks = $this->service->getTasks();
         $students = $this->service->getStudents();
-
+//
         $this->model = new StudentModel($tasks, $students);
 
         $studentTasks = $this->model->getStudentTasks(1);
@@ -69,10 +69,10 @@ class IndexController implements Controller
     {
         
         $this->service = new StudentsManagerService();
-
+//
         $tasks = $this->service->getTasks();
         $students = $this->service->getStudents();
-
+//
 
         $this->model = new InstructorModel($students);
         $taskStudents = $this->model->getTaskStudents(1, $tasks);
@@ -228,11 +228,12 @@ class IndexController implements Controller
     {
         if (isset($_POST['task'])) {
             $taskId = $_POST['task'];
+            
             $this->service = new StudentsManagerService();
-
+//
             $tasks = $this->service->getTasks();
             $students = $this->service->getStudents();
-    
+    //
     
             $this->model = new InstructorModel($students);
             $taskStudents = $this->model->getTaskStudents($taskId, $tasks);
