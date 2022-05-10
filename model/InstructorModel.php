@@ -2,7 +2,9 @@
 // use model\entities;
 namespace models;
 
+use models\entities\Student;
 use models\entities\StudentsCount;
+use models\entities\Task;
 
 
 
@@ -63,7 +65,12 @@ class InstructorModel
         }
         return  $studentsForTask;
     }
-    public function getLessonStudents($lessonId)
+    /**
+     * Нахождение студентов для конкретного занятия
+     * 
+     * @return Student[] объект 
+     */
+    public function getLessonStudents($lessonId):array
     {
         $lessonStudents = array();
 
@@ -81,7 +88,13 @@ class InstructorModel
 
         return $lessonStudents; 
     }
-    private function getCurrentTask()
+
+    /**
+     * Поиск задания по id
+     * 
+     * @return Task объект 
+     */
+    private function getCurrentTask(): Task
     {
         foreach ($this->tasks as $task) {
             if ($task->getId() == $this->taskId) {

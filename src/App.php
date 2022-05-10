@@ -14,7 +14,6 @@ class App
 
     private Controller $controller;
 
-
     function __construct()
     {
         

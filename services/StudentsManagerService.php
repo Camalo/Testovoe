@@ -6,7 +6,6 @@ use src\Database;
 use models\entities\Task;
 use models\entities\Student;
 use models\entities\Group;
-use models\entities\Instructor;
 use models\entities\Lesson;
 
 

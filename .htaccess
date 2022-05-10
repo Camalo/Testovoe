@@ -16,7 +16,9 @@ RewriteCond %{REQUEST_FILENAME} !-l
 
 DirectoryIndex public/index.php
 
-#RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+
+
+
 
 
 

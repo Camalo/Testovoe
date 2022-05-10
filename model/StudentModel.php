@@ -1,7 +1,7 @@
 <?php
 
 namespace models;
-use model\entities;
+
 
 class StudentModel 
 {

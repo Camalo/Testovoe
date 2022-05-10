@@ -12,9 +12,9 @@ class ErrorHandler{
 
     public function processError($errorNo, $errorStr, $errorFile, $errorLine){
         header("HTTP/1.1 500");
-        require_once('../error_500.php');
         $log = $errorStr . " file: " . $errorFile . " line: " . $errorLine;
         Logger::Log($log);
         return true;
     }
 }
+
