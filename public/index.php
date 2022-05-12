@@ -6,7 +6,7 @@ define('URL','https://localhost/testovoe');
 
 
 
-$errorHandler = new ErrorHandler();
-$errorHandler->register();
+//$errorHandler = new ErrorHandler();
+ErrorHandler::register();
 
 $app = new App();
