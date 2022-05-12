@@ -1,13 +1,14 @@
 <?php
 
-use src\Logger;
+namespace src;
+
 
 class ErrorHandler{
 
     
-    static public function register(){
+     public function register(){
         ini_set('display_errors', 'off');
-        set_error_handler([new ErrorHandler, 'processError']);
+        set_error_handler([$this, 'processError']);
     }
 
     public function processError($errorNo, $errorStr, $errorFile, $errorLine){

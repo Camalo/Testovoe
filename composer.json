@@ -3,14 +3,7 @@
         "twig/twig": "3.*"
     },
     "autoload": {
-        "psr-0": {
-            "src": "Src/",
-            "models": "Model/",
-            "models/entities": "Model/Entities",
-            "controllers": "Controller/",
-            "view": "View/",
-            "services": "Services/"
-        },
+       
         "psr-4": {
             "src\\": "Src/",
             "models\\": "Model/",
@@ -18,15 +11,7 @@
             "controllers\\": "Controller/",
             "view\\": "View/",
             "services\\": "Services/"
-        },
-        "classmap": [
-            "Src/",
-            "Model/",
-            "Model/Entities",
-            "Controller/",
-            "view/",
-            "Services/"
-        ]
+        }
        
     }
 }

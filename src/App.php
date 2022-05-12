@@ -2,8 +2,6 @@
 
 namespace src;
 
-require 'IndexFactory.php';
-
 use controllers\IndexController as IndexController;
 use controllers\IndexController as ErrorController;
 
